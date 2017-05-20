@@ -1,0 +1,52 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        maven { url 'https://maven.google.com' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.google.com' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext{
+    supportLibVersion = '25.3.1'
+    daggerVersion = '2.10'
+    daggerCompilerVersion = '2.10'
+    retrofitVersion = '2.1.0'
+    gsonConverterVersion = '2.1.0'
+    okhttpVersion = '3.8.0'
+    picassoVersion = '2.5.2'
+    archVersion = '1.0.0-alpha1'
+
+    supportLibAppCompat = "com.android.support:appcompat-v7:$supportLibVersion"
+    supportLibDesign = "com.android.support:design:$supportLibVersion"
+    archRuntime="android.arch.lifecycle:runtime:$archVersion"
+    archExtension="android.arch.lifecycle:extensions:$archVersion"
+    archCompiler = "android.arch.lifecycle:compiler:$archVersion"
+    roomRuntime = "android.arch.persistence.room:runtime:$archVersion"
+    roomCompiler = "android.arch.persistence.room:compiler:$archVersion"
+    dagger = "com.google.dagger:dagger:$daggerVersion"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerCompilerVersion"
+    retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    gsonConverter = "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
+    okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    picasso = "com.squareup.picasso:picasso:$picassoVersion"
+
+}

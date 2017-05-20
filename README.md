@@ -4,7 +4,7 @@ Recommended architecture by Android. This repo shows that how to use LiveData, R
 <img src="https://github.com/iammert/AndroidArchitecture/blob/master/art/art.png"/>
 
 # READ ME!!!
-Still under development. MovieList page is completed by following recommended architecture techniques and new android components. Detail page will be completed soon. PRs are welcome.
+Still under development. MovieList page is completed with recommended architecture techniques and new android components. Detail page will be completed soon. PRs are welcome.
 Replace your [MovieDB](https://www.themoviedb.org/documentation/api?language=en) API_KEY to run this example.
 
 License

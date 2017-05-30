@@ -1,19 +1,31 @@
 package iammert.com.androidarchitecture.di;
 
+import android.app.Application;
+
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
 import dagger.Component;
-import iammert.com.androidarchitecture.ui.detail.MovieDetailActivity;
-import iammert.com.androidarchitecture.ui.main.MainActivity;
-import iammert.com.androidarchitecture.ui.main.MovieListFragment;
+import dagger.android.AndroidInjectionModule;
+import iammert.com.androidarchitecture.AAApp;
 
 /**
  * Created by mertsimsek on 20/05/2017.
  */
 @Singleton
-@Component(modules = AppModule.class)
+@Component(modules = {
+        AppModule.class,
+        AndroidInjectionModule.class,
+        ActivityBuilderModule.class})
 public interface AppComponent {
-    void inject(MainActivity mainActivity);
-    void inject(MovieListFragment movieListFragment);
-    void inject(MovieDetailActivity detailActivity);
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(Application application);
+
+        AppComponent build();
+    }
+
+    void inject(AAApp aaApp);
 }

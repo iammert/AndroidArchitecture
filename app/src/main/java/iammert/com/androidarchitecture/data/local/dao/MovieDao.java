@@ -23,6 +23,6 @@ public interface MovieDao {
     void saveMovies(List<MovieEntity> movieEntities);
 
     @Query("SELECT * FROM movies WHERE id=:id")
-    LiveData<List<MovieEntity>> getMovie(int id);
+    LiveData<MovieEntity> getMovie(int id);
 
 }

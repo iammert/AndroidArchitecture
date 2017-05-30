@@ -39,6 +39,9 @@ public class MovieEntity {
     @SerializedName("backdrop_path")
     private String backdropPath;
 
+    @SerializedName("original_language")
+    private String originalLanguage;
+
     public int getId() {
         return id;
     }
@@ -109,5 +112,13 @@ public class MovieEntity {
 
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 }

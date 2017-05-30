@@ -17,9 +17,11 @@
         android:focusable="true">
 
         <ImageView
+            android:id="@+id/imageViewCover"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:transitionName="@string/shared_image"
             app:url="@{movie.posterPath}" />
 
     </RelativeLayout>

@@ -50,4 +50,7 @@ public class MovieRepository {
         }.getAsLiveData();
     }
 
+    public LiveData<MovieEntity> getMovie(int id){
+        return movieDao.getMovie(id);
+    }
 }

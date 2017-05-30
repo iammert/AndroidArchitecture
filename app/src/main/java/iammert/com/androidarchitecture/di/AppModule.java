@@ -1,6 +1,7 @@
 package iammert.com.androidarchitecture.di;
 
 import android.app.Application;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.persistence.room.Room;
 
 import java.util.concurrent.TimeUnit;
@@ -9,14 +10,12 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import iammert.com.androidarchitecture.AAApp;
-import iammert.com.androidarchitecture.data.MovieRepository;
 import iammert.com.androidarchitecture.data.local.MovieDatabase;
 import iammert.com.androidarchitecture.data.local.dao.MovieDao;
 import iammert.com.androidarchitecture.data.remote.ApiConstants;
 import iammert.com.androidarchitecture.data.remote.MovieDBService;
 import iammert.com.androidarchitecture.data.remote.RequestInterceptor;
-import iammert.com.androidarchitecture.ui.main.MovieListViewModel;
+import iammert.com.androidarchitecture.viewmodel.MovieViewModelFactory;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -24,14 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by mertsimsek on 20/05/2017.
  */
-@Module
+@Module(subcomponents = ViewModelSubComponent.class)
 public class AppModule {
-
-    Application application;
-
-    public AppModule(Application application) {
-        this.application = application;
-    }
 
     @Provides
     @Singleton
@@ -57,7 +50,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    MovieDatabase provideMovieDatabase() {
+    MovieDatabase provideMovieDatabase(Application application) {
         return Room.databaseBuilder(application, MovieDatabase.class, "aa.db").build();
     }
 
@@ -69,8 +62,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    MovieRepository provideMovieRepository(MovieDao movieDao, MovieDBService movieDBService){
-        return new MovieRepository(movieDao, movieDBService);
+    ViewModelProvider.Factory provideViewModelFactory(ViewModelSubComponent.Builder builder){
+        return new MovieViewModelFactory(builder.build());
     }
 
 }

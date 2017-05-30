@@ -6,7 +6,6 @@
         <variable
             name="resource"
             type="iammert.com.androidarchitecture.data.Resource"/>
-
     </data>
 
     <android.support.v7.widget.RecyclerView

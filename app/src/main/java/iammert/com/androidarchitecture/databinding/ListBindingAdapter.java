@@ -12,7 +12,7 @@ import iammert.com.androidarchitecture.ui.BaseAdapter;
  * Created by mertsimsek on 20/05/2017.
  */
 
-public final class ListBindingAdapter {
+public final class ListBindingAdapter{
     @BindingAdapter(value = "resource")
     public static void setResource(RecyclerView recyclerView, Resource resource){
         RecyclerView.Adapter adapter = recyclerView.getAdapter();
@@ -25,6 +25,5 @@ public final class ListBindingAdapter {
         if(adapter instanceof BaseAdapter){
             ((BaseAdapter)adapter).setData((List) resource.data);
         }
-
     }
 }

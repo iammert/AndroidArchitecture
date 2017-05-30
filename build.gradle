@@ -25,10 +25,9 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-ext{
+ext {
     supportLibVersion = '25.3.1'
-    daggerVersion = '2.10'
-    daggerCompilerVersion = '2.10'
+    daggerVersion = '2.11-rc2'
     retrofitVersion = '2.1.0'
     gsonConverterVersion = '2.1.0'
     okhttpVersion = '3.8.0'
@@ -37,16 +36,18 @@ ext{
 
     supportLibAppCompat = "com.android.support:appcompat-v7:$supportLibVersion"
     supportLibDesign = "com.android.support:design:$supportLibVersion"
-    archRuntime="android.arch.lifecycle:runtime:$archVersion"
-    archExtension="android.arch.lifecycle:extensions:$archVersion"
+    archRuntime = "android.arch.lifecycle:runtime:$archVersion"
+    archExtension = "android.arch.lifecycle:extensions:$archVersion"
     archCompiler = "android.arch.lifecycle:compiler:$archVersion"
     roomRuntime = "android.arch.persistence.room:runtime:$archVersion"
     roomCompiler = "android.arch.persistence.room:compiler:$archVersion"
     dagger = "com.google.dagger:dagger:$daggerVersion"
-    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerCompilerVersion"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    daggerAndroid = "com.google.dagger:dagger-android:$daggerVersion"
+    daggerAndroidSupport = "com.google.dagger:dagger-android-support:$daggerVersion"
+    daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:$daggerVersion"
     retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
     gsonConverter = "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
     okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
     picasso = "com.squareup.picasso:picasso:$picassoVersion"
-
 }

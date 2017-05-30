@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "iammert.com.androidarchitecture"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -54,6 +54,9 @@ dependencies {
     //dagger
     annotationProcessor rootProject.ext.daggerCompiler
     compile rootProject.ext.dagger
+    compile rootProject.ext.daggerAndroid
+    compile rootProject.ext.daggerAndroidSupport
+    annotationProcessor rootProject.ext.daggerAndroidProcessor
 
     //ui
     compile rootProject.ext.picasso

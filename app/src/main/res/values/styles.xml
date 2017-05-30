@@ -6,6 +6,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="DetailTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorMainDark</item>
+        <item name="colorPrimaryDark">@color/colorMainDarkDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/changebounds_with_arcmotion
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/changebounds_with_arcmotion
+        </item>
+
     </style>
 
     <style name="MainTabStyle" parent="Base.Widget.Design.TabLayout">

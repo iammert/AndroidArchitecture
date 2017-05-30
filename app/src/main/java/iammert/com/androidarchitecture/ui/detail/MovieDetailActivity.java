@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -40,12 +42,24 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);
+
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         int movieId = getIntent().getIntExtra(KEY_MOVIE_ID, 0);
         movieDetailViewModel.getMovie(movieId)
                 .observe(this, movieEntity -> binding.setMovie(movieEntity));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                ActivityCompat.finishAfterTransition(this);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

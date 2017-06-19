@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by mertsimsek on 20/05/2017.
  */
-@Module(subcomponents = ViewModelSubComponent.class)
+@Module(includes = ViewModelModule.class)
 public class AppModule {
 
     @Provides
@@ -58,12 +58,6 @@ public class AppModule {
     @Singleton
     MovieDao provideMovieDao(MovieDatabase movieDatabase) {
         return movieDatabase.movieDao();
-    }
-
-    @Provides
-    @Singleton
-    ViewModelProvider.Factory provideViewModelFactory(ViewModelSubComponent.Builder builder){
-        return new MovieViewModelFactory(builder.build());
     }
 
 }

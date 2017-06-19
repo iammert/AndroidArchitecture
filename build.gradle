@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha3'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -27,7 +27,7 @@ task clean(type: Delete) {
 
 ext {
     supportLibVersion = '25.3.1'
-    daggerVersion = '2.11-rc2'
+    daggerVersion = '2.11'
     retrofitVersion = '2.1.0'
     gsonConverterVersion = '2.1.0'
     okhttpVersion = '3.8.0'

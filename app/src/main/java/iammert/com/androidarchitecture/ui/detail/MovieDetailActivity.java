@@ -2,6 +2,8 @@ package iammert.com.androidarchitecture.ui.detail;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -30,6 +32,8 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
     ActivityMovieDetailBinding binding;
 
     @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
     MovieDetailViewModel movieDetailViewModel;
 
     public static Intent newIntent(Context context, int movieId) {
@@ -43,6 +47,7 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleR
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);
+        movieDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieDetailViewModel.class);
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

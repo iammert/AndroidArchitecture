@@ -1,6 +1,8 @@
 package iammert.com.androidarchitecture.ui.main;
 
 import android.arch.lifecycle.LifecycleFragment;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -21,9 +23,11 @@ import iammert.com.androidarchitecture.ui.detail.MovieDetailActivity;
  * Created by mertsimsek on 19/05/2017.
  */
 
-public class MovieListFragment extends LifecycleFragment implements MovieListCallback{
+public class MovieListFragment extends LifecycleFragment implements MovieListCallback {
 
     @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
     MovieListViewModel movieListViewModel;
 
     FragmentMovieListBinding binding;
@@ -37,8 +41,9 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         AndroidSupportInjection.inject(this);
+        super.onCreate(savedInstanceState);
+        movieListViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieListViewModel.class);
     }
 
     @Nullable
@@ -55,7 +60,9 @@ public class MovieListFragment extends LifecycleFragment implements MovieListCal
         super.onActivityCreated(savedInstanceState);
         movieListViewModel
                 .getPopularMovies()
-                .observe(this, listResource -> binding.setResource(listResource));
+                .observe(this, listResource -> {
+                    binding.setResource(listResource);
+                });
     }
 
     @Override

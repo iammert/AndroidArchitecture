@@ -19,20 +19,20 @@ package iammert.com.androidarchitecture.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
-import android.util.ArrayMap;
 
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.inject.Singleton;
 
+@Singleton
 public class MovieViewModelFactory implements ViewModelProvider.Factory {
 
-    private final Map<Class<? extends ViewModel>, Provider<? extends ViewModel>> creators;
+    private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
     @Inject
-    public MovieViewModelFactory(Map<Class<? extends ViewModel>, Provider<? extends ViewModel>> creators) {
+    public MovieViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> creators) {
         this.creators = creators;
     }
 
@@ -40,7 +40,7 @@ public class MovieViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(Class<T> modelClass) {
         Provider<? extends ViewModel> creator = creators.get(modelClass);
         if (creator == null) {
-            for (Map.Entry<Class<? extends ViewModel>, Provider<? extends ViewModel>> entry : creators.entrySet()) {
+            for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {
                 if (modelClass.isAssignableFrom(entry.getKey())) {
                     creator = entry.getValue();
                     break;

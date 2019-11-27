@@ -1,25 +1,25 @@
 package iammert.com.androidarchitecture.ui;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * Created by mertsimsek on 15/09/2017.
+ * Updated by johnjeremih on 26/11/2019
  */
 
-public abstract class BaseActivity<DB extends ViewDataBinding> extends AppCompatActivity implements HasSupportFragmentInjector {
+public abstract class BaseActivity<DB extends ViewDataBinding> extends DaggerAppCompatActivity {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentAndroidInjector;
@@ -36,8 +36,5 @@ public abstract class BaseActivity<DB extends ViewDataBinding> extends AppCompat
         dataBinding = DataBindingUtil.setContentView(this, getLayoutRes());
     }
 
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentAndroidInjector;
-    }
+
 }

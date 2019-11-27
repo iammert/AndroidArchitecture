@@ -1,8 +1,8 @@
 package iammert.com.androidarchitecture.di;
 
 import android.app.Application;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.persistence.room.Room;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Room;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,7 +15,6 @@ import iammert.com.androidarchitecture.data.local.dao.MovieDao;
 import iammert.com.androidarchitecture.data.remote.ApiConstants;
 import iammert.com.androidarchitecture.data.remote.MovieDBService;
 import iammert.com.androidarchitecture.data.remote.RequestInterceptor;
-import iammert.com.androidarchitecture.viewmodel.MovieViewModelFactory;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

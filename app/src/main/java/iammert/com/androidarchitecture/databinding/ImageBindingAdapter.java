@@ -1,7 +1,7 @@
 package iammert.com.androidarchitecture.databinding;
 
-import android.databinding.BindingAdapter;
-import android.support.v4.content.ContextCompat;
+import androidx.databinding.BindingAdapter;
+import androidx.core.content.ContextCompat;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -18,7 +18,7 @@ public final class ImageBindingAdapter {
     @BindingAdapter(value = "url")
     public static void loadImageUrl(ImageView view, String url) {
         if (url != null && !url.equals(""))
-            Picasso.with(view.getContext())
+            Picasso.get()
                     .load(ApiConstants.IMAGE_ENDPOINT_PREFIX + url)
                     .placeholder(R.drawable.placeholder)
                     .into(view);

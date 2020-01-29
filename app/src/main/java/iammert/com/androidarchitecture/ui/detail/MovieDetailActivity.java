@@ -1,16 +1,17 @@
 package iammert.com.androidarchitecture.ui.detail;
 
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.LifecycleRegistryOwner;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import javax.inject.Inject;
@@ -23,7 +24,7 @@ import iammert.com.androidarchitecture.databinding.ActivityMovieDetailBinding;
  * Created by mertsimsek on 19/05/2017.
  */
 
-public class MovieDetailActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+public class MovieDetailActivity extends AppCompatActivity implements LifecycleOwner {
 
     private static final String KEY_MOVIE_ID = "key_movie_id";
 

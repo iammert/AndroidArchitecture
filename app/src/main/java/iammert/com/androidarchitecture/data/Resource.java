@@ -16,8 +16,8 @@
 
 package iammert.com.androidarchitecture.data;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static iammert.com.androidarchitecture.data.Status.ERROR;
 import static iammert.com.androidarchitecture.data.Status.LOADING;

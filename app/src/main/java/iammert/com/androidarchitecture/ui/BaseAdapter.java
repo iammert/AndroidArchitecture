@@ -1,6 +1,6 @@
 package iammert.com.androidarchitecture.ui;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 

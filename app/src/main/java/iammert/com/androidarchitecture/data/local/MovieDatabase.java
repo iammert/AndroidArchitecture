@@ -1,7 +1,7 @@
 package iammert.com.androidarchitecture.data.local;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 import iammert.com.androidarchitecture.data.local.dao.MovieDao;
 import iammert.com.androidarchitecture.data.local.entity.MovieEntity;

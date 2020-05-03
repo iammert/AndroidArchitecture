@@ -50,7 +50,19 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
             @Override
             public void onResponse(Call<RequestType> call, Response<RequestType> response) {
                 result.removeSource(dbSource);
-                saveResultAndReInit(response.body());
+                if(response.isSuccessful()) {
+                    saveResultAndReInit(response.body());
+                    return;
+                }
+                result.addSource(dbSource, newData->{
+                    try {
+                        result.setValue(Resource.error(response.errorBody().string(), newData));
+                    } catch (IOException e) {
+
+                        // reload from disk whatever we had
+                        result.setValue(Resource.success(newData));
+                    }
+                });
             }
 
             @Override

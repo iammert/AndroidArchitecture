@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.detail;
+package iammert.com.androidarchitecture.ui.detail.popular;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,8 +14,8 @@ import iammert.com.androidarchitecture.data.local.entity.MovieEntity;
  * Created by mertsimsek on 21/05/2017.
  */
 
-public class MovieDetailViewModel extends ViewModel{
-    private final LiveData<Resource<MovieEntity>>  movieDetail = new MutableLiveData<>();
+public class MovieDetailViewModel extends ViewModel {
+    private final LiveData<Resource<MovieEntity>> movieDetail = new MutableLiveData<>();
     private final MovieRepository movieRepository;
 
     @Inject
@@ -23,7 +23,7 @@ public class MovieDetailViewModel extends ViewModel{
         this.movieRepository = movieRepository;
     }
 
-    public LiveData<MovieEntity> getMovie(int id){
+    public LiveData<MovieEntity> getMovie(int id) {
         return movieRepository.getMovie(id);
     }
 }

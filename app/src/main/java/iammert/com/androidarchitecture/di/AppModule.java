@@ -1,7 +1,7 @@
 package iammert.com.androidarchitecture.di;
 
 import android.app.Application;
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.room.Room;
 
 import java.util.concurrent.TimeUnit;
@@ -50,7 +50,9 @@ public class AppModule {
     @Provides
     @Singleton
     MovieDatabase provideMovieDatabase(Application application) {
-        return Room.databaseBuilder(application, MovieDatabase.class, "aa.db").build();
+        return Room.databaseBuilder(application, MovieDatabase.class, "aa.db")
+                .addMigrations(MovieDatabase.MIGRATION_1_3)
+                .build();
     }
 
     @Provides

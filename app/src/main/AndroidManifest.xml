@@ -20,7 +20,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.MovieDetailActivity"
+            android:name=".ui.detail.popular.MovieDetailActivity"
+            android:theme="@style/DetailTheme" />
+
+        <activity
+            android:name=".ui.detail.science.MovieScienceDetailActivity"
+            android:theme="@style/DetailTheme" />
+
+        <activity
+            android:name=".ui.detail.comedy.MovieComedyDetailActivity"
             android:theme="@style/DetailTheme" />
     </application>
 

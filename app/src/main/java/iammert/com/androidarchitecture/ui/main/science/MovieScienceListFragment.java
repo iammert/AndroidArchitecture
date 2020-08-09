@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.main;
+package iammert.com.androidarchitecture.ui.main.science;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,28 +10,28 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import iammert.com.androidarchitecture.R;
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity;
+import iammert.com.androidarchitecture.data.local.entity.ScienceMovieEntity;
 import iammert.com.androidarchitecture.databinding.FragmentMovieListBinding;
 import iammert.com.androidarchitecture.enums.MovieType;
 import iammert.com.androidarchitecture.ui.BaseFragment;
-import iammert.com.androidarchitecture.ui.detail.popular.MovieDetailActivity;
+import iammert.com.androidarchitecture.ui.detail.science.MovieScienceDetailActivity;
 
 /**
- * Created by mertsimsek on 19/05/2017.
+ * Develop by mehmetbalbay on 09-08-2020.
  */
 
-public class MovieListFragment extends BaseFragment<MovieListViewModel, FragmentMovieListBinding> implements MovieListCallback {
+public class MovieScienceListFragment extends BaseFragment<MovieScienceListViewModel, FragmentMovieListBinding> implements ScienceMovieListCallback {
 
-    public static MovieListFragment newInstance() {
+    public static MovieScienceListFragment newInstance() {
         Bundle args = new Bundle();
-        MovieListFragment fragment = new MovieListFragment();
+        MovieScienceListFragment fragment = new MovieScienceListFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public Class<MovieListViewModel> getViewModel() {
-        return MovieListViewModel.class;
+    public Class<MovieScienceListViewModel> getViewModel() {
+        return MovieScienceListViewModel.class;
     }
 
     @Override
@@ -44,21 +44,21 @@ public class MovieListFragment extends BaseFragment<MovieListViewModel, Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         dataBinding.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        dataBinding.recyclerView.setAdapter(new MovieListAdapter(this));
+        dataBinding.recyclerView.setAdapter(new MovieScienceListAdapter(this));
         return dataBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        viewModel.getPopularMovies()
+        viewModel.getScienceMovies()
                 .observe(getViewLifecycleOwner(), listResource -> dataBinding.setResource(listResource));
     }
 
     @Override
-    public void onMovieClicked(MovieEntity movieEntity, View sharedView) {
+    public void onMovieClicked(ScienceMovieEntity movieEntity, View sharedView) {
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(getActivity(), sharedView, getString(R.string.shared_image));
-        startActivity(MovieDetailActivity.newIntent(getActivity(), movieEntity.getId(), MovieType.POPULAR), options.toBundle());
+        startActivity(MovieScienceDetailActivity.newIntent(getActivity(), movieEntity.getId(), MovieType.SCIENCE), options.toBundle());
     }
 }

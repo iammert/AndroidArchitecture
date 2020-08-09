@@ -1,45 +1,44 @@
-package iammert.com.androidarchitecture.ui.detail;
+package iammert.com.androidarchitecture.ui.detail.science;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LifecycleRegistry;
-import androidx.lifecycle.LifecycleRegistryOwner;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import iammert.com.androidarchitecture.R;
-import iammert.com.androidarchitecture.databinding.ActivityMovieDetailBinding;
+import iammert.com.androidarchitecture.databinding.ActivityScienceMovieDetailBinding;
+import iammert.com.androidarchitecture.enums.MovieType;
 
 /**
  * Created by mertsimsek on 19/05/2017.
  */
 
-public class MovieDetailActivity extends AppCompatActivity implements LifecycleOwner {
+public class MovieScienceDetailActivity extends AppCompatActivity {
 
     private static final String KEY_MOVIE_ID = "key_movie_id";
+    private static final String KEY_MOVIE_TYPE = "key_movie_type";
 
-    LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
-
-    ActivityMovieDetailBinding binding;
+    ActivityScienceMovieDetailBinding binding;
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-    MovieDetailViewModel movieDetailViewModel;
+    MovieScienceDetailViewModel movieDetailViewModel;
 
-    public static Intent newIntent(Context context, int movieId) {
-        Intent intent = new Intent(context, MovieDetailActivity.class);
+    public static Intent newIntent(Context context, int movieId, MovieType movieType) {
+        Intent intent = new Intent(context, MovieScienceDetailActivity.class);
         intent.putExtra(KEY_MOVIE_ID, movieId);
+        intent.putExtra(KEY_MOVIE_TYPE, movieType);
         return intent;
     }
 
@@ -47,15 +46,18 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleO
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);
-        movieDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieDetailViewModel.class);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_science_movie_detail);
+        movieDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieScienceDetailViewModel.class);
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        MovieType movieType = (MovieType) getIntent().getSerializableExtra(KEY_MOVIE_TYPE);
+
         int movieId = getIntent().getIntExtra(KEY_MOVIE_ID, 0);
-        movieDetailViewModel.getMovie(movieId)
+        movieDetailViewModel.getScienceMovie(movieId)
                 .observe(this, movieEntity -> binding.setMovie(movieEntity));
+
     }
 
     @Override
@@ -66,11 +68,6 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleO
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return lifecycleRegistry;
     }
 
 }

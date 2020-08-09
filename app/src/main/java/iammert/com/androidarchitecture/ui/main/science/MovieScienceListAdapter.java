@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.main;
+package iammert.com.androidarchitecture.ui.main.science;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,27 +9,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity;
-import iammert.com.androidarchitecture.databinding.ItemMovieListBinding;
+import iammert.com.androidarchitecture.data.local.entity.ScienceMovieEntity;
+import iammert.com.androidarchitecture.databinding.ItemScienceMovieListBinding;
 import iammert.com.androidarchitecture.ui.BaseAdapter;
 
 /**
- * Created by mertsimsek on 20/05/2017.
+ * Develop by mehmetbalbay on 09-08-2020.
  */
 
-public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHolder, MovieEntity> {
+public class MovieScienceListAdapter extends BaseAdapter<MovieScienceListAdapter.MovieViewHolder, ScienceMovieEntity> {
 
-    private List<MovieEntity> movieEntities;
+    private final ScienceMovieListCallback movieListCallback;
+    private List<ScienceMovieEntity> movieEntities;
 
-    private final MovieListCallback movieListCallback;
-
-    public MovieListAdapter(@NonNull MovieListCallback movieListCallback) {
+    public MovieScienceListAdapter(@NonNull ScienceMovieListCallback movieListCallback) {
         movieEntities = new ArrayList<>();
         this.movieListCallback = movieListCallback;
     }
 
     @Override
-    public void setData(List<MovieEntity> movieEntities) {
+    public void setData(List<ScienceMovieEntity> movieEntities) {
         this.movieEntities = movieEntities;
         notifyDataSetChanged();
     }
@@ -51,21 +50,21 @@ public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHold
 
     static class MovieViewHolder extends RecyclerView.ViewHolder {
 
-        public static MovieViewHolder create(LayoutInflater inflater, ViewGroup parent, MovieListCallback callback) {
-            ItemMovieListBinding itemMovieListBinding = ItemMovieListBinding.inflate(inflater, parent, false);
-            return new MovieViewHolder(itemMovieListBinding, callback);
-        }
+        ItemScienceMovieListBinding binding;
 
-        ItemMovieListBinding binding;
-
-        public MovieViewHolder(ItemMovieListBinding binding, MovieListCallback callback) {
+        public MovieViewHolder(ItemScienceMovieListBinding binding, ScienceMovieListCallback callback) {
             super(binding.getRoot());
             this.binding = binding;
             binding.getRoot().setOnClickListener(v ->
                     callback.onMovieClicked(binding.getMovie(), binding.imageViewCover));
         }
 
-        public void onBind(MovieEntity movieEntity) {
+        public static MovieViewHolder create(LayoutInflater inflater, ViewGroup parent, ScienceMovieListCallback callback) {
+            ItemScienceMovieListBinding itemMovieListBinding = ItemScienceMovieListBinding.inflate(inflater, parent, false);
+            return new MovieViewHolder(itemMovieListBinding, callback);
+        }
+
+        public void onBind(ScienceMovieEntity movieEntity) {
             binding.setMovie(movieEntity);
             binding.executePendingBindings();
         }

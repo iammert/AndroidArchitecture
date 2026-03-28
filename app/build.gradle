@@ -1,72 +1,54 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.android.application)
+}
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    namespace = 'iammert.com.androidarchitecture'
+    compileSdk = 36
+
     defaultConfig {
-        applicationId "iammert.com.androidarchitecture"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = 'iammert.com.androidarchitecture'
+        minSdk = 23
+        targetSdk = 34
+        versionCode = 1
+        versionName = '1.0'
     }
+
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.recyclerview
+    implementation libs.androidx.lifecycle.viewmodel
+    implementation libs.androidx.lifecycle.livedata
 
+    implementation libs.androidx.room.runtime
+    annotationProcessor libs.androidx.room.compiler
 
+    implementation libs.dagger.android.support
+    annotationProcessor libs.dagger.compiler
+    annotationProcessor libs.dagger.android.processor
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation'androidx.lifecycle:lifecycle-runtime:2.1.0'
-    implementation'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation libs.retrofit
+    implementation libs.retrofit.converter.gson
+    implementation libs.okhttp
+    implementation libs.picasso
 
-    //noinspection LifecycleAnnotationProcessorWithJava8
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0'
-    implementation'androidx.room:room-runtime:2.2.2'
-    annotationProcessor 'androidx.room:room-compiler:2.2.2'
-
-
-    //dagger
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-
-    implementation  "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation  "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
-    implementation  "com.squareup.okhttp3:okhttp:$okhttpVersion"
-
-    implementation  "com.squareup.picasso:picasso:$picassoVersion"
-
-
-
-
-
-
-
-
-
+    testImplementation libs.junit
 }
-

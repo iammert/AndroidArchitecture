@@ -1,0 +1,32 @@
+[versions]
+agp = "9.1.0"
+appcompat = "1.7.1"
+material = "1.13.0"
+recyclerview = "1.4.0"
+lifecycle = "2.10.0"
+room = "2.8.4"
+dagger = "2.59.2"
+retrofit = "3.0.0"
+okhttp = "5.3.2"
+picasso = "2.8"
+junit = "4.13.2"
+
+[libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
+androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "lifecycle" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "dagger" }
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "dagger" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
+junit = { module = "junit:junit", version.ref = "junit" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }

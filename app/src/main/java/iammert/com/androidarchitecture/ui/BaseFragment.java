@@ -1,10 +1,7 @@
 package iammert.com.androidarchitecture.ui;
 
-import androidx.lifecycle.LifecycleRegistry;
-import androidx.lifecycle.LifecycleRegistryOwner;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -23,9 +20,7 @@ import dagger.android.support.AndroidSupportInjection;
  * Created by mertsimsek on 15/09/2017.
  */
 
-public abstract class BaseFragment<VM extends ViewModel, DB extends ViewDataBinding> extends Fragment implements LifecycleRegistryOwner {
-
-    private LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
+public abstract class BaseFragment<VM extends ViewModel, DB extends ViewDataBinding> extends Fragment {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -43,7 +38,7 @@ public abstract class BaseFragment<VM extends ViewModel, DB extends ViewDataBind
     public void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidSupportInjection.inject(this);
         super.onCreate(savedInstanceState);
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModel());
+        viewModel = new ViewModelProvider(this, viewModelFactory).get(getViewModel());
     }
 
     @Nullable
@@ -53,8 +48,4 @@ public abstract class BaseFragment<VM extends ViewModel, DB extends ViewDataBind
         return dataBinding.getRoot();
     }
 
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return lifecycleRegistry;
-    }
 }

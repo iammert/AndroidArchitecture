@@ -1,10 +1,6 @@
 package iammert.com.androidarchitecture.ui.detail;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LifecycleRegistry;
-import androidx.lifecycle.LifecycleRegistryOwner;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
@@ -24,11 +20,9 @@ import iammert.com.androidarchitecture.databinding.ActivityMovieDetailBinding;
  * Created by mertsimsek on 19/05/2017.
  */
 
-public class MovieDetailActivity extends AppCompatActivity implements LifecycleOwner {
+public class MovieDetailActivity extends AppCompatActivity {
 
     private static final String KEY_MOVIE_ID = "key_movie_id";
-
-    LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
 
     ActivityMovieDetailBinding binding;
 
@@ -48,7 +42,7 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleO
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);
-        movieDetailViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieDetailViewModel.class);
+        movieDetailViewModel = new ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel.class);
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,9 +62,5 @@ public class MovieDetailActivity extends AppCompatActivity implements LifecycleO
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public LifecycleRegistry getLifecycle() {
-        return lifecycleRegistry;
-    }
 
 }

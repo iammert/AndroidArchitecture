@@ -2,6 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream { localProperties.load(it) }
+}
+
 android {
     namespace = 'iammert.com.androidarchitecture'
     compileSdk = 36
@@ -12,6 +18,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = '1.0'
+
+        buildConfigField 'String', 'TMDB_API_KEY', "\"${localProperties.getProperty('tmdb.apiKey', '')}\""
     }
 
     buildTypes {
@@ -23,6 +31,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     compileOptions {

@@ -5,7 +5,11 @@ Recommended architecture by Android. This repo shows that how to use LiveData, R
 
 # READ ME!!!
 Still under development. MovieList page is completed with recommended architecture techniques and new android components. Detail page will be completed soon. PRs are welcome.
-Replace your [MovieDB](https://www.themoviedb.org/documentation/api?language=en) API_KEY to run this example.
+Add your [TMDB](https://developer.themoviedb.org/docs/getting-started) API key to `local.properties` to run this example:
+
+```
+tmdb.apiKey=YOUR_API_KEY
+```
 
 License
 --------

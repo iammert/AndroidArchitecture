@@ -22,5 +22,9 @@ public final class ListBindingAdapter{
         if(resource == null || resource.data == null)
             return;
 
+        if (adapter instanceof BaseAdapter) {
+            ((BaseAdapter) adapter).setData((List) resource.data);
+        }
+
     }
 }

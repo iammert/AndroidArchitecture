@@ -1,6 +1,7 @@
 package iammert.com.androidarchitecture.ui.main;
 
 import android.os.Bundle;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -48,10 +49,10 @@ public class MovieListFragment extends BaseFragment<MovieListViewModel, Fragment
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         viewModel.getPopularMovies()
-                .observe(this, listResource -> dataBinding.setResource(listResource));
+                .observe(getViewLifecycleOwner(), listResource -> dataBinding.setResource(listResource));
     }
 
     @Override

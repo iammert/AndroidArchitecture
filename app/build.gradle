@@ -34,6 +34,11 @@ android {
         buildConfig = true
     }
 
+    lint {
+        // Reported for Picasso's notification helpers, which the app does not use.
+        disable 'NotificationPermission'
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

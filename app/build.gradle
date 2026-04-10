@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.ksp)
 }
 
 def localProperties = new Properties()
@@ -45,6 +46,12 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
+}
+
 dependencies {
     implementation libs.androidx.appcompat
     implementation libs.material
@@ -53,11 +60,11 @@ dependencies {
     implementation libs.androidx.lifecycle.livedata
 
     implementation libs.androidx.room.runtime
-    annotationProcessor libs.androidx.room.compiler
+    ksp libs.androidx.room.compiler
 
     implementation libs.dagger.android.support
-    annotationProcessor libs.dagger.compiler
-    annotationProcessor libs.dagger.android.processor
+    ksp libs.dagger.compiler
+    ksp libs.dagger.android.processor
 
     implementation libs.retrofit
     implementation libs.retrofit.converter.gson

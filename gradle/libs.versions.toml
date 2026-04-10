@@ -1,5 +1,7 @@
 [versions]
 agp = "9.1.0"
+kotlin = "2.3.20"
+ksp = "2.3.6"
 appcompat = "1.7.1"
 material = "1.13.0"
 recyclerview = "1.4.0"
@@ -30,3 +32,5 @@ junit = { module = "junit:junit", version.ref = "junit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

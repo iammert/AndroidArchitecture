@@ -1,26 +1,30 @@
 package iammert.com.androidarchitecture.data
 
-import androidx.lifecycle.LiveData
 import iammert.com.androidarchitecture.data.local.dao.MovieDao
 import iammert.com.androidarchitecture.data.local.entity.MovieEntity
 import iammert.com.androidarchitecture.data.remote.MovieDBService
-import iammert.com.androidarchitecture.data.remote.model.MoviesResponse
-import retrofit2.Call
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Offline-first: the database is the single source of truth, the network only refreshes it.
+ */
 class MovieRepository @Inject constructor(
     private val movieDao: MovieDao,
     private val movieDBService: MovieDBService
 ) {
 
-    fun loadPopularMovies(): LiveData<Resource<List<MovieEntity>>> =
-        object : NetworkBoundResource<List<MovieEntity>, MoviesResponse>() {
-            override fun saveCallResult(item: MoviesResponse) = movieDao.saveMovies(item.results)
+    fun observePopularMovies(): Flow<List<MovieEntity>> = movieDao.loadMovies()
 
-            override fun loadFromDb(): LiveData<List<MovieEntity>> = movieDao.loadMovies()
+    suspend fun refreshPopularMovies(): Result<Unit> = try {
+        movieDao.saveMovies(movieDBService.loadMovies().results)
+        Result.success(Unit)
+    } catch (exception: CancellationException) {
+        throw exception
+    } catch (exception: Exception) {
+        Result.failure(exception)
+    }
 
-            override fun createCall(): Call<MoviesResponse> = movieDBService.loadMovies()
-        }.asLiveData
-
-    fun getMovie(id: Int): LiveData<MovieEntity> = movieDao.getMovie(id)
+    fun observeMovie(id: Int): Flow<MovieEntity?> = movieDao.getMovie(id)
 }

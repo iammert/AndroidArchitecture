@@ -1,5 +1,6 @@
 package iammert.com.androidarchitecture.data.remote.model
 
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
+import kotlinx.serialization.Serializable
 
-data class MoviesResponse(val results: List<MovieEntity> = emptyList())
+@Serializable
+data class MoviesResponse(val results: List<MovieDto> = emptyList())

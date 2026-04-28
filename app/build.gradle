@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 def localProperties = new Properties()
@@ -69,7 +70,8 @@ dependencies {
     ksp libs.dagger.android.processor
 
     implementation libs.retrofit
-    implementation libs.retrofit.converter.gson
+    implementation libs.retrofit.converter.kotlinx.serialization
+    implementation libs.kotlinx.serialization.json
     implementation libs.okhttp
     implementation libs.picasso
 

@@ -14,10 +14,10 @@ import iammert.com.androidarchitecture.data.local.MovieDatabase;
 import iammert.com.androidarchitecture.data.local.dao.MovieDao;
 import iammert.com.androidarchitecture.data.remote.ApiConstants;
 import iammert.com.androidarchitecture.data.remote.MovieDBService;
+import iammert.com.androidarchitecture.data.remote.NetworkJson;
 import iammert.com.androidarchitecture.data.remote.RequestInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by mertsimsek on 20/05/2017.
@@ -40,7 +40,7 @@ public class AppModule {
     MovieDBService provideRetrofit(OkHttpClient okHttpClient) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstants.ENDPOINT)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(NetworkJson.converterFactory())
                 .client(okHttpClient)
                 .build();
 

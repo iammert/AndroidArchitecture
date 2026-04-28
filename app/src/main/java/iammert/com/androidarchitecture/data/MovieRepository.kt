@@ -3,6 +3,7 @@ package iammert.com.androidarchitecture.data
 import iammert.com.androidarchitecture.data.local.dao.MovieDao
 import iammert.com.androidarchitecture.data.local.entity.MovieEntity
 import iammert.com.androidarchitecture.data.remote.MovieDBService
+import iammert.com.androidarchitecture.data.remote.model.toEntity
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class MovieRepository @Inject constructor(
     fun observePopularMovies(): Flow<List<MovieEntity>> = movieDao.loadMovies()
 
     suspend fun refreshPopularMovies(): Result<Unit> = try {
-        movieDao.saveMovies(movieDBService.loadMovies().results)
+        movieDao.saveMovies(movieDBService.loadMovies().results.map { it.toEntity() })
         Result.success(Unit)
     } catch (exception: CancellationException) {
         throw exception

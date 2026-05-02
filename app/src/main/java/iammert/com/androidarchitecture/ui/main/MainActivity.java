@@ -1,11 +1,13 @@
 package iammert.com.androidarchitecture.ui.main;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import android.os.Bundle;
 
 import iammert.com.androidarchitecture.R;
 import iammert.com.androidarchitecture.databinding.ActivityMainBinding;
 import iammert.com.androidarchitecture.ui.BaseActivity;
 
+@AndroidEntryPoint
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override

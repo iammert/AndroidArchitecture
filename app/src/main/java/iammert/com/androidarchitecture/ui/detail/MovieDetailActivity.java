@@ -1,6 +1,8 @@
 package iammert.com.androidarchitecture.ui.detail;
 
 import androidx.lifecycle.ViewModelProvider;
+
+import dagger.hilt.android.AndroidEntryPoint;
 import android.content.Context;
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
@@ -10,9 +12,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import iammert.com.androidarchitecture.R;
 import iammert.com.androidarchitecture.databinding.ActivityMovieDetailBinding;
 
@@ -20,14 +20,12 @@ import iammert.com.androidarchitecture.databinding.ActivityMovieDetailBinding;
  * Created by mertsimsek on 19/05/2017.
  */
 
+@AndroidEntryPoint
 public class MovieDetailActivity extends AppCompatActivity {
 
     private static final String KEY_MOVIE_ID = "key_movie_id";
 
     ActivityMovieDetailBinding binding;
-
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
 
     MovieDetailViewModel movieDetailViewModel;
 
@@ -39,10 +37,9 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail);
-        movieDetailViewModel = new ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel.class);
+        movieDetailViewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

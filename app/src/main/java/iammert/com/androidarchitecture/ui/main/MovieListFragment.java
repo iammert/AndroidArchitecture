@@ -1,5 +1,6 @@
 package iammert.com.androidarchitecture.ui.main;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import iammert.com.androidarchitecture.ui.detail.MovieDetailActivity;
  * Created by mertsimsek on 19/05/2017.
  */
 
+@AndroidEntryPoint
 public class MovieListFragment extends BaseFragment<MovieListViewModel, FragmentMovieListBinding> implements MovieListCallback {
 
     public static MovieListFragment newInstance() {

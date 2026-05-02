@@ -12,18 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import javax.inject.Inject;
 
-import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Created by mertsimsek on 15/09/2017.
  */
 
 public abstract class BaseFragment<VM extends ViewModel, DB extends ViewDataBinding> extends Fragment {
-
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
 
     public VM viewModel;
 
@@ -36,9 +31,8 @@ public abstract class BaseFragment<VM extends ViewModel, DB extends ViewDataBind
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidSupportInjection.inject(this);
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this, viewModelFactory).get(getViewModel());
+        viewModel = new ViewModelProvider(this).get(getViewModel());
     }
 
     @Nullable

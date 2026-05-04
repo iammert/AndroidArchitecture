@@ -1,11 +1,13 @@
 package iammert.com.androidarchitecture.data
 
 import iammert.com.androidarchitecture.data.local.dao.MovieDao
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
+import iammert.com.androidarchitecture.data.local.entity.asExternalModel
+import iammert.com.androidarchitecture.data.model.Movie
 import iammert.com.androidarchitecture.data.remote.MovieDBService
 import iammert.com.androidarchitecture.data.remote.model.toEntity
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 /**
@@ -16,7 +18,8 @@ class MovieRepository @Inject constructor(
     private val movieDBService: MovieDBService
 ) {
 
-    fun observePopularMovies(): Flow<List<MovieEntity>> = movieDao.loadMovies()
+    fun observePopularMovies(): Flow<List<Movie>> =
+        movieDao.loadMovies().map { movies -> movies.map { it.asExternalModel() } }
 
     suspend fun refreshPopularMovies(): Result<Unit> = try {
         movieDao.saveMovies(movieDBService.loadMovies().results.map { it.toEntity() })
@@ -27,5 +30,5 @@ class MovieRepository @Inject constructor(
         Result.failure(exception)
     }
 
-    fun observeMovie(id: Int): Flow<MovieEntity?> = movieDao.getMovie(id)
+    fun observeMovie(id: Int): Flow<Movie?> = movieDao.getMovie(id).map { it?.asExternalModel() }
 }

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import iammert.com.androidarchitecture.R;
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity;
+import iammert.com.androidarchitecture.data.model.Movie;
 import iammert.com.androidarchitecture.databinding.FragmentMovieListBinding;
 import iammert.com.androidarchitecture.ui.BaseFragment;
 import iammert.com.androidarchitecture.ui.detail.MovieDetailActivity;
@@ -58,7 +58,7 @@ public class MovieListFragment extends BaseFragment<MovieListViewModel, Fragment
     }
 
     @Override
-    public void onMovieClicked(MovieEntity movieEntity, View sharedView) {
+    public void onMovieClicked(Movie movieEntity, View sharedView) {
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(getActivity(), sharedView, getString(R.string.shared_image));
         startActivity(MovieDetailActivity.newIntent(getActivity(), movieEntity.getId()), options.toBundle());

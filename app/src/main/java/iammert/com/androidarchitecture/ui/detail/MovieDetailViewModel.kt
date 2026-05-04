@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import androidx.lifecycle.asLiveData
 import iammert.com.androidarchitecture.data.MovieRepository
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
+import iammert.com.androidarchitecture.data.model.Movie
 import javax.inject.Inject
 
 @HiltViewModel
@@ -13,5 +13,5 @@ class MovieDetailViewModel @Inject constructor(
     private val movieRepository: MovieRepository
 ) : ViewModel() {
 
-    fun getMovie(id: Int): LiveData<MovieEntity?> = movieRepository.observeMovie(id).asLiveData()
+    fun getMovie(id: Int): LiveData<Movie?> = movieRepository.observeMovie(id).asLiveData()
 }

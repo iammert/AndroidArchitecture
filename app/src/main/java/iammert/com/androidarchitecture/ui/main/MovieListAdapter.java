@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity;
+import iammert.com.androidarchitecture.data.model.Movie;
 import iammert.com.androidarchitecture.databinding.ItemMovieListBinding;
 import iammert.com.androidarchitecture.ui.BaseAdapter;
 
@@ -17,9 +17,9 @@ import iammert.com.androidarchitecture.ui.BaseAdapter;
  * Created by mertsimsek on 20/05/2017.
  */
 
-public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHolder, MovieEntity> {
+public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHolder, Movie> {
 
-    private List<MovieEntity> movieEntities;
+    private List<Movie> movieEntities;
 
     private final MovieListCallback movieListCallback;
 
@@ -29,7 +29,7 @@ public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHold
     }
 
     @Override
-    public void setData(List<MovieEntity> movieEntities) {
+    public void setData(List<Movie> movieEntities) {
         this.movieEntities = movieEntities;
         notifyDataSetChanged();
     }
@@ -65,7 +65,7 @@ public class MovieListAdapter extends BaseAdapter<MovieListAdapter.MovieViewHold
                     callback.onMovieClicked(binding.getMovie(), binding.imageViewCover));
         }
 
-        public void onBind(MovieEntity movieEntity) {
+        public void onBind(Movie movieEntity) {
             binding.setMovie(movieEntity);
             binding.executePendingBindings();
         }

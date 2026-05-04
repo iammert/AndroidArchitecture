@@ -7,7 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import iammert.com.androidarchitecture.data.MovieRepository
 import iammert.com.androidarchitecture.data.Resource
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
+import iammert.com.androidarchitecture.data.model.Movie
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -21,7 +21,7 @@ class MovieListViewModel @Inject constructor(
     private val refreshError = MutableStateFlow<String?>(null)
     private val isRefreshing = MutableStateFlow(true)
 
-    val popularMovies: LiveData<Resource<List<MovieEntity>>> = combine(
+    val popularMovies: LiveData<Resource<List<Movie>>> = combine(
         movieRepository.observePopularMovies(),
         isRefreshing,
         refreshError

@@ -6,7 +6,7 @@
 
         <variable
             name="movie"
-            type="iammert.com.androidarchitecture.data.local.entity.MovieEntity" />
+            type="iammert.com.androidarchitecture.data.model.Movie" />
     </data>
 
 

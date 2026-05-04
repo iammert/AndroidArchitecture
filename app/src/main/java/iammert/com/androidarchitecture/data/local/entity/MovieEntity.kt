@@ -3,6 +3,7 @@ package iammert.com.androidarchitecture.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import iammert.com.androidarchitecture.data.model.Movie
 
 @Entity(tableName = "movies")
 data class MovieEntity(
@@ -18,4 +19,17 @@ data class MovieEntity(
     val voteAverage: Double = 0.0,
     val backdropPath: String? = null,
     val originalLanguage: String? = null
+)
+
+fun MovieEntity.asExternalModel() = Movie(
+    id = id,
+    title = title.orEmpty(),
+    originalTitle = originalTitle.orEmpty(),
+    overview = overview.orEmpty(),
+    posterPath = posterPath,
+    backdropPath = backdropPath,
+    originalLanguage = originalLanguage.orEmpty(),
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+    isAdult = isAdult
 )

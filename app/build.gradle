@@ -71,6 +71,8 @@ dependencies {
     implementation libs.androidx.lifecycle.runtime.compose
     implementation libs.androidx.lifecycle.viewmodel.compose
     debugImplementation libs.androidx.compose.ui.tooling
+    implementation libs.coil.compose
+    implementation libs.coil.network.okhttp
 
     implementation libs.androidx.room.runtime
     implementation libs.androidx.room.ktx
@@ -78,6 +80,7 @@ dependencies {
 
     implementation libs.hilt.android
     ksp libs.hilt.compiler
+    implementation libs.androidx.hilt.lifecycle.viewmodel.compose
 
     implementation libs.retrofit
     implementation libs.retrofit.converter.kotlinx.serialization

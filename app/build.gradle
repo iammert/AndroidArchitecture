@@ -39,11 +39,6 @@ android {
         compose = true
     }
 
-    lint {
-        // Reported for Picasso's notification helpers, which the app does not use.
-        disable 'NotificationPermission'
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -66,6 +61,7 @@ dependencies {
 
     implementation platform(libs.androidx.compose.bom)
     implementation libs.androidx.compose.material3
+    implementation libs.androidx.compose.material.icons.extended
     implementation libs.androidx.compose.ui.tooling.preview
     implementation libs.androidx.activity.compose
     implementation libs.androidx.lifecycle.runtime.compose
@@ -86,7 +82,6 @@ dependencies {
     implementation libs.retrofit.converter.kotlinx.serialization
     implementation libs.kotlinx.serialization.json
     implementation libs.okhttp
-    implementation libs.picasso
 
     testImplementation libs.junit
 }

@@ -2,9 +2,6 @@
 agp = "9.1.0"
 kotlin = "2.3.20"
 ksp = "2.3.6"
-appcompat = "1.7.1"
-material = "1.13.0"
-recyclerview = "1.4.0"
 lifecycle = "2.10.0"
 room = "2.8.4"
 hilt = "2.59.2"
@@ -16,14 +13,11 @@ serialization = "1.11.0"
 compose-bom = "2026.04.01"
 activity-compose = "1.13.0"
 coil = "3.4.0"
+navigation = "2.9.8"
 junit = "4.13.2"
 
 [libraries]
-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-material = { module = "com.google.android.material:material", version.ref = "material" }
-androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
-androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
@@ -33,6 +27,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }

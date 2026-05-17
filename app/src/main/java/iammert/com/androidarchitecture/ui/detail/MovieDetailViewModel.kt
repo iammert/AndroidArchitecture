@@ -3,8 +3,10 @@ package iammert.com.androidarchitecture.ui.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import iammert.com.androidarchitecture.data.MovieRepository
+import iammert.com.androidarchitecture.ui.navigation.MovieDetailRoute
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -17,7 +19,7 @@ class MovieDetailViewModel @Inject constructor(
     movieRepository: MovieRepository
 ) : ViewModel() {
 
-    private val movieId: Int = checkNotNull(savedStateHandle[KEY_MOVIE_ID])
+    private val movieId: Int = savedStateHandle.toRoute<MovieDetailRoute>().movieId
 
     val uiState: StateFlow<MovieDetailUiState> = movieRepository.observeMovie(movieId)
         .map { movie -> movie?.let { MovieDetailUiState.Success(it) } ?: MovieDetailUiState.NotFound }
@@ -26,8 +28,4 @@ class MovieDetailViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = MovieDetailUiState.Loading
         )
-
-    companion object {
-        const val KEY_MOVIE_ID = "movie_id"
-    }
 }

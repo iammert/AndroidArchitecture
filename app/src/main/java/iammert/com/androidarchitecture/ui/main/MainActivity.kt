@@ -1,27 +1,21 @@
-package iammert.com.androidarchitecture.ui.detail
+package iammert.com.androidarchitecture.ui.main
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
+import iammert.com.androidarchitecture.ui.navigation.ArchMoviesNavHost
 import iammert.com.androidarchitecture.ui.theme.ArchMoviesTheme
 
 @AndroidEntryPoint
-class MovieDetailActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ArchMoviesTheme {
-                MovieDetailRoute(onBack = ::finish)
+                ArchMoviesNavHost()
             }
         }
-    }
-
-    companion object {
-        fun newIntent(context: Context, movieId: Int): Intent =
-            Intent(context, MovieDetailActivity::class.java).putExtra(MovieDetailViewModel.KEY_MOVIE_ID, movieId)
     }
 }

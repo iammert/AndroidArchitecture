@@ -34,7 +34,6 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
         buildConfig = true
         compose = true
     }
@@ -52,11 +51,7 @@ kotlin {
 }
 
 dependencies {
-    implementation libs.androidx.appcompat
-    implementation libs.material
-    implementation libs.androidx.recyclerview
     implementation libs.androidx.lifecycle.viewmodel.ktx
-    implementation libs.androidx.lifecycle.livedata.ktx
     implementation libs.kotlinx.coroutines.android
 
     implementation platform(libs.androidx.compose.bom)
@@ -64,6 +59,7 @@ dependencies {
     implementation libs.androidx.compose.material.icons.extended
     implementation libs.androidx.compose.ui.tooling.preview
     implementation libs.androidx.activity.compose
+    implementation libs.androidx.navigation.compose
     implementation libs.androidx.lifecycle.runtime.compose
     implementation libs.androidx.lifecycle.viewmodel.compose
     debugImplementation libs.androidx.compose.ui.tooling

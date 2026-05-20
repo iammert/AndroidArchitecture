@@ -3,7 +3,9 @@ package iammert.com.androidarchitecture.data
 import iammert.com.androidarchitecture.data.local.dao.MovieDao
 import iammert.com.androidarchitecture.data.local.entity.asExternalModel
 import iammert.com.androidarchitecture.data.model.Movie
+import iammert.com.androidarchitecture.data.model.MovieCategory
 import iammert.com.androidarchitecture.data.remote.MovieDBService
+import iammert.com.androidarchitecture.data.remote.model.MoviesResponse
 import iammert.com.androidarchitecture.data.remote.model.toEntity
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
@@ -18,11 +20,12 @@ class MovieRepository @Inject constructor(
     private val movieDBService: MovieDBService
 ) {
 
-    fun observePopularMovies(): Flow<List<Movie>> =
-        movieDao.loadMovies().map { movies -> movies.map { it.asExternalModel() } }
+    fun observeMovies(category: MovieCategory): Flow<List<Movie>> =
+        movieDao.observeMovies(category).map { movies -> movies.map { it.asExternalModel() } }
 
-    suspend fun refreshPopularMovies(): Result<Unit> = try {
-        movieDao.saveMovies(movieDBService.loadMovies().results.map { it.toEntity() })
+    suspend fun refreshMovies(category: MovieCategory): Result<Unit> = try {
+        val movies = fetch(category).results.map { it.toEntity() }
+        movieDao.replaceCategory(category, movies)
         Result.success(Unit)
     } catch (exception: CancellationException) {
         throw exception
@@ -30,5 +33,16 @@ class MovieRepository @Inject constructor(
         Result.failure(exception)
     }
 
-    fun observeMovie(id: Int): Flow<Movie?> = movieDao.getMovie(id).map { it?.asExternalModel() }
+    fun observeMovie(id: Int): Flow<Movie?> = movieDao.observeMovie(id).map { it?.asExternalModel() }
+
+    private suspend fun fetch(category: MovieCategory): MoviesResponse = when (category) {
+        MovieCategory.POPULAR -> movieDBService.popularMovies()
+        MovieCategory.SCIENCE_FICTION -> movieDBService.discoverMovies(GENRE_SCIENCE_FICTION)
+        MovieCategory.COMEDY -> movieDBService.discoverMovies(GENRE_COMEDY)
+    }
+
+    private companion object {
+        const val GENRE_SCIENCE_FICTION = 878
+        const val GENRE_COMEDY = 35
+    }
 }

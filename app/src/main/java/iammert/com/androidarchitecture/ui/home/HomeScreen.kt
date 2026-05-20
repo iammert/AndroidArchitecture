@@ -18,13 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.data.model.Movie
+import iammert.com.androidarchitecture.data.model.MovieCategory
 import iammert.com.androidarchitecture.ui.main.MovieListRoute
 import kotlinx.coroutines.launch
 
-private enum class HomeTab(@StringRes val title: Int) {
-    POPULAR(R.string.tab_popular),
-    SCIENCE(R.string.tab_science),
-    COMEDY(R.string.tab_comedy)
+private enum class HomeTab(@StringRes val title: Int, val category: MovieCategory) {
+    POPULAR(R.string.tab_popular, MovieCategory.POPULAR),
+    SCIENCE(R.string.tab_science, MovieCategory.SCIENCE_FICTION),
+    COMEDY(R.string.tab_comedy, MovieCategory.COMEDY)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,8 +48,8 @@ fun HomeScreen(onMovieClick: (Movie) -> Unit) {
                     )
                 }
             }
-            HorizontalPager(state = pagerState) {
-                MovieListRoute(onMovieClick = onMovieClick)
+            HorizontalPager(state = pagerState) { page ->
+                MovieListRoute(category = tabs[page].category, onMovieClick = onMovieClick)
             }
         }
     }

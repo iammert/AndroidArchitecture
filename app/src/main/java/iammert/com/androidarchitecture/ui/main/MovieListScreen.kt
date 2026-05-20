@@ -29,12 +29,16 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.data.model.Movie
+import iammert.com.androidarchitecture.data.model.MovieCategory
 import iammert.com.androidarchitecture.data.remote.ApiConstants
 
 @Composable
 fun MovieListRoute(
+    category: MovieCategory,
     onMovieClick: (Movie) -> Unit,
-    viewModel: MovieListViewModel = hiltViewModel()
+    viewModel: MovieListViewModel = hiltViewModel<MovieListViewModel, MovieListViewModel.Factory>(
+        key = category.name
+    ) { factory -> factory.create(category) }
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     MovieListScreen(uiState = uiState, onMovieClick = onMovieClick, onRetry = viewModel::refresh)

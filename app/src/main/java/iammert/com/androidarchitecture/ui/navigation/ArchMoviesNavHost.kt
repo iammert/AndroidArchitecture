@@ -1,21 +1,35 @@
 package iammert.com.androidarchitecture.ui.navigation
 
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import iammert.com.androidarchitecture.ui.common.LocalAnimatedVisibilityScope
+import iammert.com.androidarchitecture.ui.common.LocalSharedTransitionScope
 import iammert.com.androidarchitecture.ui.detail.MovieDetailRoute as MovieDetailScreenRoute
 import iammert.com.androidarchitecture.ui.home.HomeScreen
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun ArchMoviesNavHost() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = HomeRoute) {
-        composable<HomeRoute> {
-            HomeScreen(onMovieClick = { movie -> navController.navigate(MovieDetailRoute(movie.id)) })
-        }
-        composable<MovieDetailRoute> {
-            MovieDetailScreenRoute(onBack = navController::navigateUp)
+    SharedTransitionLayout {
+        CompositionLocalProvider(LocalSharedTransitionScope provides this) {
+            NavHost(navController = navController, startDestination = HomeRoute) {
+                composable<HomeRoute> {
+                    CompositionLocalProvider(LocalAnimatedVisibilityScope provides this) {
+                        HomeScreen(onMovieClick = { movie -> navController.navigate(MovieDetailRoute(movie.id)) })
+                    }
+                }
+                composable<MovieDetailRoute> {
+                    CompositionLocalProvider(LocalAnimatedVisibilityScope provides this) {
+                        MovieDetailScreenRoute(onBack = navController::navigateUp)
+                    }
+                }
+            }
         }
     }
 }

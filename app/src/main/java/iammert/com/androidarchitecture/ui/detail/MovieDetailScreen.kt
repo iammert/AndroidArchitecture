@@ -46,6 +46,7 @@ import coil3.compose.AsyncImage
 import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.data.model.Movie
 import iammert.com.androidarchitecture.data.remote.ApiConstants
+import iammert.com.androidarchitecture.ui.common.sharedPoster
 import java.util.Locale
 
 @Composable
@@ -117,6 +118,7 @@ private fun MovieDetail(movie: Movie, bottomPadding: Dp) {
                     .offset(y = (-48).dp)
                     .width(110.dp)
                     .aspectRatio(2f / 3f)
+                    .sharedPoster(movie.id)
                     .clip(RoundedCornerShape(8.dp))
             )
             Column(modifier = Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {

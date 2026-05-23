@@ -31,6 +31,7 @@ import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.data.model.Movie
 import iammert.com.androidarchitecture.data.model.MovieCategory
 import iammert.com.androidarchitecture.data.remote.ApiConstants
+import iammert.com.androidarchitecture.ui.common.sharedPoster
 
 @Composable
 fun MovieListRoute(
@@ -80,6 +81,7 @@ private fun MovieGrid(movies: List<Movie>, onMovieClick: (Movie) -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(2f / 3f)
+                    .sharedPoster(movie.id)
                     .clickable { onMovieClick(movie) }
             )
         }

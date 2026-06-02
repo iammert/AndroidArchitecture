@@ -48,6 +48,10 @@ class MovieListViewModel @AssistedInject constructor(
         }
     }
 
+    fun onErrorShown() {
+        refreshError.value = null
+    }
+
     @AssistedFactory
     interface Factory {
         fun create(category: MovieCategory): MovieListViewModel

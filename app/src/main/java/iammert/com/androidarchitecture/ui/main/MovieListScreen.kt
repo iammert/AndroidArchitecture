@@ -2,7 +2,6 @@ package iammert.com.androidarchitecture.ui.main
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
@@ -14,10 +13,16 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -42,26 +47,53 @@ fun MovieListRoute(
     ) { factory -> factory.create(category) }
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    MovieListScreen(uiState = uiState, onMovieClick = onMovieClick, onRetry = viewModel::refresh)
+    MovieListScreen(
+        uiState = uiState,
+        onMovieClick = onMovieClick,
+        onRefresh = viewModel::refresh,
+        onErrorShown = viewModel::onErrorShown
+    )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieListScreen(
     uiState: MovieListUiState,
     onMovieClick: (Movie) -> Unit,
-    onRetry: () -> Unit,
+    onRefresh: () -> Unit,
+    onErrorShown: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(modifier = modifier.fillMaxSize()) {
+    val snackbarHostState = remember { SnackbarHostState() }
+    val hasMovies = uiState.movies.isNotEmpty()
+
+    if (hasMovies && uiState.errorMessage != null) {
+        LaunchedEffect(uiState.errorMessage) {
+            snackbarHostState.showSnackbar(uiState.errorMessage)
+            onErrorShown()
+        }
+    }
+
+    PullToRefreshBox(
+        isRefreshing = hasMovies && uiState.isLoading,
+        onRefresh = onRefresh,
+        modifier = modifier.fillMaxSize()
+    ) {
         when {
-            uiState.movies.isNotEmpty() -> MovieGrid(uiState.movies, onMovieClick)
+            hasMovies -> MovieGrid(uiState.movies, onMovieClick)
             uiState.isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             uiState.errorMessage != null -> ErrorMessage(
                 message = uiState.errorMessage,
-                onRetry = onRetry,
+                onRetry = onRefresh,
+                modifier = Modifier.align(Alignment.Center)
+            )
+            uiState.isEmpty -> Text(
+                text = stringResource(R.string.no_movies),
+                style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.align(Alignment.Center)
             )
         }
+        SnackbarHost(snackbarHostState, modifier = Modifier.align(Alignment.BottomCenter))
     }
 }
 

@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google()
         mavenCentral()
@@ -14,5 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'AndroidArchitecture'
-include ':app'
+rootProject.name = "AndroidArchitecture"
+include(":app")

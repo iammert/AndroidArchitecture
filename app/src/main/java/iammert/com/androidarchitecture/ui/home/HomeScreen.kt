@@ -17,8 +17,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import iammert.com.androidarchitecture.R
-import iammert.com.androidarchitecture.data.model.Movie
-import iammert.com.androidarchitecture.data.model.MovieCategory
+import iammert.com.androidarchitecture.core.model.Movie
+import iammert.com.androidarchitecture.core.model.MovieCategory
 import iammert.com.androidarchitecture.ui.main.MovieListRoute
 import kotlinx.coroutines.launch
 

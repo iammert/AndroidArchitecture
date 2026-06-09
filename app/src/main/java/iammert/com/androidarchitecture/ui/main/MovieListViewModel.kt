@@ -7,7 +7,7 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import iammert.com.androidarchitecture.data.MovieRepository
-import iammert.com.androidarchitecture.data.model.MovieCategory
+import iammert.com.androidarchitecture.core.model.MovieCategory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

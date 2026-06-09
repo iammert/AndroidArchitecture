@@ -1,6 +1,6 @@
 package iammert.com.androidarchitecture.ui.detail
 
-import iammert.com.androidarchitecture.data.model.Movie
+import iammert.com.androidarchitecture.core.model.Movie
 
 sealed interface MovieDetailUiState {
     data object Loading : MovieDetailUiState

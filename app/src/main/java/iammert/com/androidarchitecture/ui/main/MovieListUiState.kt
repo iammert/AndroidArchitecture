@@ -1,6 +1,6 @@
 package iammert.com.androidarchitecture.ui.main
 
-import iammert.com.androidarchitecture.data.model.Movie
+import iammert.com.androidarchitecture.core.model.Movie
 
 data class MovieListUiState(
     val movies: List<Movie> = emptyList(),

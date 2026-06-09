@@ -2,8 +2,8 @@ package iammert.com.androidarchitecture.data
 
 import iammert.com.androidarchitecture.data.local.dao.MovieDao
 import iammert.com.androidarchitecture.data.local.entity.asExternalModel
-import iammert.com.androidarchitecture.data.model.Movie
-import iammert.com.androidarchitecture.data.model.MovieCategory
+import iammert.com.androidarchitecture.core.model.Movie
+import iammert.com.androidarchitecture.core.model.MovieCategory
 import iammert.com.androidarchitecture.data.remote.MovieDBService
 import iammert.com.androidarchitecture.data.remote.model.MoviesResponse
 import iammert.com.androidarchitecture.data.remote.model.toEntity

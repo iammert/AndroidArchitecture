@@ -6,7 +6,7 @@ import androidx.room.Transaction
 import androidx.room.Upsert
 import iammert.com.androidarchitecture.data.local.entity.MovieCategoryEntity
 import iammert.com.androidarchitecture.data.local.entity.MovieEntity
-import iammert.com.androidarchitecture.data.model.MovieCategory
+import iammert.com.androidarchitecture.core.model.MovieCategory
 import kotlinx.coroutines.flow.Flow
 
 @Dao

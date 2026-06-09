@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.data.model
+package iammert.com.androidarchitecture.core.model
 
 data class Movie(
     val id: Int,

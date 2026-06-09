@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.model)
+
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.coroutines.android)
 

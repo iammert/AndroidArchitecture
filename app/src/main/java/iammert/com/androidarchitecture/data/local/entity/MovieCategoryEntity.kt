@@ -3,7 +3,7 @@ package iammert.com.androidarchitecture.data.local.entity
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
-import iammert.com.androidarchitecture.data.model.MovieCategory
+import iammert.com.androidarchitecture.core.model.MovieCategory
 
 @Entity(
     tableName = "movie_categories",

@@ -45,7 +45,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.core.model.Movie
-import iammert.com.androidarchitecture.data.remote.ApiConstants
 import iammert.com.androidarchitecture.ui.common.sharedPoster
 import java.util.Locale
 
@@ -99,7 +98,7 @@ private fun MovieDetail(movie: Movie, bottomPadding: Dp) {
             .padding(bottom = bottomPadding)
     ) {
         AsyncImage(
-            model = (movie.backdropPath ?: movie.posterPath)?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
+            model = movie.backdropUrl ?: movie.posterUrl,
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -111,7 +110,7 @@ private fun MovieDetail(movie: Movie, bottomPadding: Dp) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             AsyncImage(
-                model = movie.posterPath?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
+                model = movie.posterUrl,
                 contentDescription = movie.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

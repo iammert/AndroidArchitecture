@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import iammert.com.androidarchitecture.core.model.Movie
+import iammert.com.androidarchitecture.data.remote.ApiConstants
 
 @Entity(tableName = "movies")
 data class MovieEntity(
@@ -26,8 +27,8 @@ fun MovieEntity.asExternalModel() = Movie(
     title = title.orEmpty(),
     originalTitle = originalTitle.orEmpty(),
     overview = overview.orEmpty(),
-    posterPath = posterPath,
-    backdropPath = backdropPath,
+    posterUrl = posterPath?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
+    backdropUrl = backdropPath?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
     originalLanguage = originalLanguage.orEmpty(),
     voteAverage = voteAverage,
     voteCount = voteCount,

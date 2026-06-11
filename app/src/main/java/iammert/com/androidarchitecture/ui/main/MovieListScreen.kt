@@ -35,7 +35,6 @@ import coil3.compose.AsyncImage
 import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.core.model.Movie
 import iammert.com.androidarchitecture.core.model.MovieCategory
-import iammert.com.androidarchitecture.data.remote.ApiConstants
 import iammert.com.androidarchitecture.ui.common.sharedPoster
 
 @Composable
@@ -107,7 +106,7 @@ private fun MovieGrid(movies: List<Movie>, onMovieClick: (Movie) -> Unit) {
     ) {
         items(movies, key = { it.id }) { movie ->
             AsyncImage(
-                model = movie.posterPath?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
+                model = movie.posterUrl,
                 contentDescription = movie.title,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier

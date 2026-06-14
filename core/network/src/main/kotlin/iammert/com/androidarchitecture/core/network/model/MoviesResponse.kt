@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.data.remote.model
+package iammert.com.androidarchitecture.core.network.model
 
 import kotlinx.serialization.Serializable
 

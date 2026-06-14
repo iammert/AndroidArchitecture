@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import iammert.com.androidarchitecture.core.model.Movie
-import iammert.com.androidarchitecture.data.remote.ApiConstants
+import iammert.com.androidarchitecture.core.network.ApiConstants
 
 @Entity(tableName = "movies")
 data class MovieEntity(

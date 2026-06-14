@@ -1,13 +1,13 @@
-package iammert.com.androidarchitecture.di
+package iammert.com.androidarchitecture.core.network.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import iammert.com.androidarchitecture.data.remote.ApiConstants
-import iammert.com.androidarchitecture.data.remote.MovieDBService
-import iammert.com.androidarchitecture.data.remote.NetworkJson
-import iammert.com.androidarchitecture.data.remote.RequestInterceptor
+import iammert.com.androidarchitecture.core.network.ApiConstants
+import iammert.com.androidarchitecture.core.network.MovieDBService
+import iammert.com.androidarchitecture.core.network.NetworkJson
+import iammert.com.androidarchitecture.core.network.RequestInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit

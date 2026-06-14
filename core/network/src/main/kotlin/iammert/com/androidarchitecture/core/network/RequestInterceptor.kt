@@ -1,6 +1,6 @@
-package iammert.com.androidarchitecture.data.remote
+package iammert.com.androidarchitecture.core.network
 
-import iammert.com.androidarchitecture.BuildConfig
+import iammert.com.androidarchitecture.core.network.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 

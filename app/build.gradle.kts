@@ -1,14 +1,8 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.archmovies.android.application)
     alias(libs.plugins.archmovies.android.compose)
     alias(libs.plugins.archmovies.hilt)
     alias(libs.plugins.kotlin.serialization)
-}
-
-val localProperties = Properties().apply {
-    rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use(::load)
 }
 
 android {
@@ -18,8 +12,6 @@ android {
         applicationId = "iammert.com.androidarchitecture"
         versionCode = 1
         versionName = "1.0"
-
-        buildConfigField("String", "TMDB_API_KEY", "\"${localProperties.getProperty("tmdb.apiKey", "")}\"")
     }
 
     buildTypes {
@@ -28,14 +20,11 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {
     implementation(projects.core.model)
+    implementation(projects.core.network)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.coroutines.android)
@@ -55,10 +44,6 @@ dependencies {
 
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.kotlinx.serialization)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.okhttp)
 
     testImplementation(libs.junit)
 }

@@ -4,9 +4,9 @@ import iammert.com.androidarchitecture.data.local.dao.MovieDao
 import iammert.com.androidarchitecture.data.local.entity.asExternalModel
 import iammert.com.androidarchitecture.core.model.Movie
 import iammert.com.androidarchitecture.core.model.MovieCategory
-import iammert.com.androidarchitecture.data.remote.MovieDBService
-import iammert.com.androidarchitecture.data.remote.model.MoviesResponse
-import iammert.com.androidarchitecture.data.remote.model.toEntity
+import iammert.com.androidarchitecture.core.network.MovieDBService
+import iammert.com.androidarchitecture.core.network.model.MoviesResponse
+import iammert.com.androidarchitecture.data.toEntity
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

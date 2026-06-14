@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.data.remote
+package iammert.com.androidarchitecture.core.network
 
 object ApiConstants {
     const val ENDPOINT = "https://api.themoviedb.org/3/"

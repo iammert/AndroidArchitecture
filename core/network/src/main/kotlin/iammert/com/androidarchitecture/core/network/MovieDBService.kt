@@ -1,6 +1,6 @@
-package iammert.com.androidarchitecture.data.remote
+package iammert.com.androidarchitecture.core.network
 
-import iammert.com.androidarchitecture.data.remote.model.MoviesResponse
+import iammert.com.androidarchitecture.core.network.model.MoviesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

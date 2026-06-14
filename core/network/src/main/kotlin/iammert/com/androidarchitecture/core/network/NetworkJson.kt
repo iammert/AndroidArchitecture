@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.data.remote
+package iammert.com.androidarchitecture.core.network
 
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType

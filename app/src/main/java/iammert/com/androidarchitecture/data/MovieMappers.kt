@@ -1,7 +1,9 @@
 package iammert.com.androidarchitecture.data
 
+import iammert.com.androidarchitecture.core.database.entity.MovieEntity
+import iammert.com.androidarchitecture.core.model.Movie
+import iammert.com.androidarchitecture.core.network.ApiConstants
 import iammert.com.androidarchitecture.core.network.model.MovieDto
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
 
 fun MovieDto.toEntity() = MovieEntity(
     id = id,
@@ -14,4 +16,17 @@ fun MovieDto.toEntity() = MovieEntity(
     voteAverage = voteAverage,
     backdropPath = backdropPath,
     originalLanguage = originalLanguage
+)
+
+fun MovieEntity.asExternalModel() = Movie(
+    id = id,
+    title = title.orEmpty(),
+    originalTitle = originalTitle.orEmpty(),
+    overview = overview.orEmpty(),
+    posterUrl = posterPath?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
+    backdropUrl = backdropPath?.let { ApiConstants.IMAGE_ENDPOINT_PREFIX + it },
+    originalLanguage = originalLanguage.orEmpty(),
+    voteAverage = voteAverage,
+    voteCount = voteCount,
+    isAdult = isAdult
 )

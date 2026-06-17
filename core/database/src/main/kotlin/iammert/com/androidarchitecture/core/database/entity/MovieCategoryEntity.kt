@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.data.local.entity
+package iammert.com.androidarchitecture.core.database.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

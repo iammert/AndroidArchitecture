@@ -1,10 +1,10 @@
-package iammert.com.androidarchitecture.data.local
+package iammert.com.androidarchitecture.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import iammert.com.androidarchitecture.data.local.dao.MovieDao
-import iammert.com.androidarchitecture.data.local.entity.MovieCategoryEntity
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
+import iammert.com.androidarchitecture.core.database.dao.MovieDao
+import iammert.com.androidarchitecture.core.database.entity.MovieCategoryEntity
+import iammert.com.androidarchitecture.core.database.entity.MovieEntity
 
 @Database(
     entities = [MovieEntity::class, MovieCategoryEntity::class],

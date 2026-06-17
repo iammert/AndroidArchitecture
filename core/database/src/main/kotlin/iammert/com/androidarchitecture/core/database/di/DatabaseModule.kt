@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.di
+package iammert.com.androidarchitecture.core.database.di
 
 import android.content.Context
 import androidx.room.Room
@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import iammert.com.androidarchitecture.data.local.MovieDatabase
-import iammert.com.androidarchitecture.data.local.dao.MovieDao
+import iammert.com.androidarchitecture.core.database.MovieDatabase
+import iammert.com.androidarchitecture.core.database.dao.MovieDao
 import javax.inject.Singleton
 
 @Module

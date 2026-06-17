@@ -25,6 +25,7 @@ android {
 dependencies {
     implementation(projects.core.model)
     implementation(projects.core.network)
+    implementation(projects.core.database)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.coroutines.android)
@@ -37,10 +38,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
-
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
 
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
 

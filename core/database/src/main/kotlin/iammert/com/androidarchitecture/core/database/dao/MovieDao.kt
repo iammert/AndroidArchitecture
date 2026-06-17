@@ -1,11 +1,11 @@
-package iammert.com.androidarchitecture.data.local.dao
+package iammert.com.androidarchitecture.core.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import iammert.com.androidarchitecture.data.local.entity.MovieCategoryEntity
-import iammert.com.androidarchitecture.data.local.entity.MovieEntity
+import iammert.com.androidarchitecture.core.database.entity.MovieCategoryEntity
+import iammert.com.androidarchitecture.core.database.entity.MovieEntity
 import iammert.com.androidarchitecture.core.model.MovieCategory
 import kotlinx.coroutines.flow.Flow
 

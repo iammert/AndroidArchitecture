@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import iammert.com.androidarchitecture.data.MovieRepository
+import iammert.com.androidarchitecture.core.data.repository.MovieRepository
 import iammert.com.androidarchitecture.ui.navigation.MovieDetailRoute
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

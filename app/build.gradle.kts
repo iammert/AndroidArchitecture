@@ -23,9 +23,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.model)
-    implementation(projects.core.network)
-    implementation(projects.core.database)
+    implementation(projects.core.data)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.coroutines.android)

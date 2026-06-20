@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.data
+package iammert.com.androidarchitecture.core.data
 
 import iammert.com.androidarchitecture.core.database.entity.MovieEntity
 import iammert.com.androidarchitecture.core.model.Movie

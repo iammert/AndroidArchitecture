@@ -7,8 +7,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import iammert.com.androidarchitecture.ui.common.LocalAnimatedVisibilityScope
-import iammert.com.androidarchitecture.ui.common.LocalSharedTransitionScope
+import iammert.com.androidarchitecture.core.designsystem.animation.LocalAnimatedVisibilityScope
+import iammert.com.androidarchitecture.core.designsystem.animation.LocalSharedTransitionScope
 import iammert.com.androidarchitecture.ui.detail.MovieDetailRoute as MovieDetailScreenRoute
 import iammert.com.androidarchitecture.ui.home.HomeScreen
 

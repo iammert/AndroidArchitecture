@@ -35,7 +35,7 @@ import coil3.compose.AsyncImage
 import iammert.com.androidarchitecture.R
 import iammert.com.androidarchitecture.core.model.Movie
 import iammert.com.androidarchitecture.core.model.MovieCategory
-import iammert.com.androidarchitecture.ui.common.sharedPoster
+import iammert.com.androidarchitecture.core.designsystem.animation.sharedPoster
 
 @Composable
 fun MovieListRoute(

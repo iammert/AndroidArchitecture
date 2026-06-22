@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.common
+package iammert.com.androidarchitecture.core.designsystem.animation
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi

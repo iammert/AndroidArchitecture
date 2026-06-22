@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import iammert.com.androidarchitecture.ui.navigation.ArchMoviesNavHost
-import iammert.com.androidarchitecture.ui.theme.ArchMoviesTheme
+import iammert.com.androidarchitecture.core.designsystem.theme.ArchMoviesTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.theme
+package iammert.com.androidarchitecture.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.FontWeight

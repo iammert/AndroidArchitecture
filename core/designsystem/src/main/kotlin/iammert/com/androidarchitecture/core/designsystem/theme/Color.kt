@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.theme
+package iammert.com.androidarchitecture.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

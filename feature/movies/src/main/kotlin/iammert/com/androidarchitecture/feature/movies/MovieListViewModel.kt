@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.main
+package iammert.com.androidarchitecture.feature.movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

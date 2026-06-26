@@ -1,13 +1,7 @@
 <resources>
     <string name="app_name">ArchMovies</string>
-    <string name="retry">Retry</string>
-    <string name="no_movies">No movies found</string>
-    <string name="tab_popular">Popular</string>
-    <string name="tab_science">Science</string>
-    <string name="tab_comedy">Comedy</string>
     <string name="back">Back</string>
     <string name="overview">Overview</string>
     <string name="rating">%1$s (%2$d votes)</string>
     <string name="movie_not_found">Movie not found</string>
-
 </resources>

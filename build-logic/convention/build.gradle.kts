@@ -36,6 +36,10 @@ gradlePlugin {
             id = "archmovies.android.compose"
             implementationClass = "AndroidComposeConventionPlugin"
         }
+        register("androidFeature") {
+            id = "archmovies.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("hilt") {
             id = "archmovies.hilt"
             implementationClass = "HiltConventionPlugin"

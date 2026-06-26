@@ -60,5 +60,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 archmovies-android-application = { id = "archmovies.android.application" }
 archmovies-android-library = { id = "archmovies.android.library" }
 archmovies-android-compose = { id = "archmovies.android.compose" }
+archmovies-android-feature = { id = "archmovies.android.feature" }
 archmovies-hilt = { id = "archmovies.hilt" }
 archmovies-jvm-library = { id = "archmovies.jvm.library" }

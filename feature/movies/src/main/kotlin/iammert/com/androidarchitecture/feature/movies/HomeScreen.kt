@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.home
+package iammert.com.androidarchitecture.feature.movies
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
@@ -16,10 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import iammert.com.androidarchitecture.R
+import iammert.com.androidarchitecture.feature.movies.R
 import iammert.com.androidarchitecture.core.model.Movie
 import iammert.com.androidarchitecture.core.model.MovieCategory
-import iammert.com.androidarchitecture.ui.main.MovieListRoute
 import kotlinx.coroutines.launch
 
 private enum class HomeTab(@StringRes val title: Int, val category: MovieCategory) {
@@ -30,13 +29,13 @@ private enum class HomeTab(@StringRes val title: Int, val category: MovieCategor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onMovieClick: (Movie) -> Unit) {
+internal fun HomeScreen(onMovieClick: (Movie) -> Unit) {
     val tabs = HomeTab.entries
     val pagerState = rememberPagerState { tabs.size }
     val scope = rememberCoroutineScope()
 
     Scaffold(
-        topBar = { LargeTopAppBar(title = { Text(stringResource(R.string.app_name)) }) }
+        topBar = { LargeTopAppBar(title = { Text(stringResource(R.string.movies_title)) }) }
     ) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
             PrimaryTabRow(selectedTabIndex = pagerState.currentPage) {

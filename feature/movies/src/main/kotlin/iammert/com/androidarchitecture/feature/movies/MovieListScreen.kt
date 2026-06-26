@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.main
+package iammert.com.androidarchitecture.feature.movies
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import iammert.com.androidarchitecture.R
+import iammert.com.androidarchitecture.feature.movies.R
 import iammert.com.androidarchitecture.core.model.Movie
 import iammert.com.androidarchitecture.core.model.MovieCategory
 import iammert.com.androidarchitecture.core.designsystem.animation.sharedPoster

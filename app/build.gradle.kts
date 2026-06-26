@@ -25,6 +25,7 @@ android {
 dependencies {
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
+    implementation(projects.feature.movies)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.kotlinx.coroutines.android)

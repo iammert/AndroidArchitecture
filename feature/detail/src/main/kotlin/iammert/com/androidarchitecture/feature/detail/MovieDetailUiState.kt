@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.detail
+package iammert.com.androidarchitecture.feature.detail
 
 import iammert.com.androidarchitecture.core.model.Movie
 

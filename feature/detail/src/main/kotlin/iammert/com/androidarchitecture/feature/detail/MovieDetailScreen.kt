@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.detail
+package iammert.com.androidarchitecture.feature.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -43,13 +43,13 @@ import androidx.core.os.ConfigurationCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
-import iammert.com.androidarchitecture.R
+import iammert.com.androidarchitecture.feature.detail.R
 import iammert.com.androidarchitecture.core.model.Movie
 import iammert.com.androidarchitecture.core.designsystem.animation.sharedPoster
 import java.util.Locale
 
 @Composable
-fun MovieDetailRoute(
+internal fun MovieDetailRoute(
     onBack: () -> Unit,
     viewModel: MovieDetailViewModel = hiltViewModel()
 ) {

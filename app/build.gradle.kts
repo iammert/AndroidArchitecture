@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.archmovies.android.application)
     alias(libs.plugins.archmovies.android.compose)
     alias(libs.plugins.archmovies.hilt)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -26,19 +25,12 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.designsystem)
     implementation(projects.feature.movies)
-
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(projects.feature.detail)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
-
-    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
-
 
     testImplementation(libs.junit)
 }

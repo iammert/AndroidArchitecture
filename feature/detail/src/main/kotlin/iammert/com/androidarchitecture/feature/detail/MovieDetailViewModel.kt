@@ -1,4 +1,4 @@
-package iammert.com.androidarchitecture.ui.detail
+package iammert.com.androidarchitecture.feature.detail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import iammert.com.androidarchitecture.core.data.repository.MovieRepository
-import iammert.com.androidarchitecture.ui.navigation.MovieDetailRoute
+import iammert.com.androidarchitecture.feature.detail.navigation.MovieDetailRoute
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map

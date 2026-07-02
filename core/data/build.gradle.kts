@@ -12,4 +12,5 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.network)
     implementation(libs.kotlinx.coroutines.android)
+    api(libs.androidx.paging.common)
 }

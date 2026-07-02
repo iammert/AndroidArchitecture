@@ -2,6 +2,7 @@ package iammert.com.androidarchitecture.feature.movies
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
@@ -10,7 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,7 +22,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +30,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import coil3.compose.AsyncImage
 import iammert.com.androidarchitecture.feature.movies.R
 import iammert.com.androidarchitecture.core.model.Movie
@@ -45,48 +48,42 @@ fun MovieListRoute(
         key = category.name
     ) { factory -> factory.create(category) }
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    MovieListScreen(
-        uiState = uiState,
-        onMovieClick = onMovieClick,
-        onRefresh = viewModel::refresh,
-        onErrorShown = viewModel::onErrorShown
-    )
+    MovieListScreen(movies = viewModel.movies.collectAsLazyPagingItems(), onMovieClick = onMovieClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieListScreen(
-    uiState: MovieListUiState,
+    movies: LazyPagingItems<Movie>,
     onMovieClick: (Movie) -> Unit,
-    onRefresh: () -> Unit,
-    onErrorShown: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
-    val hasMovies = uiState.movies.isNotEmpty()
+    val refreshState = movies.loadState.refresh
+    val hasMovies = movies.itemCount > 0
+    val errorMessage = (refreshState as? LoadState.Error)?.error?.message
+        ?: (movies.loadState.append as? LoadState.Error)?.error?.message
 
-    if (hasMovies && uiState.errorMessage != null) {
-        LaunchedEffect(uiState.errorMessage) {
-            snackbarHostState.showSnackbar(uiState.errorMessage)
-            onErrorShown()
+    if (hasMovies && errorMessage != null) {
+        LaunchedEffect(errorMessage) {
+            snackbarHostState.showSnackbar(errorMessage)
         }
     }
 
     PullToRefreshBox(
-        isRefreshing = hasMovies && uiState.isLoading,
-        onRefresh = onRefresh,
+        isRefreshing = hasMovies && refreshState is LoadState.Loading,
+        onRefresh = movies::refresh,
         modifier = modifier.fillMaxSize()
     ) {
         when {
-            hasMovies -> MovieGrid(uiState.movies, onMovieClick)
-            uiState.isLoading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            uiState.errorMessage != null -> ErrorMessage(
-                message = uiState.errorMessage,
-                onRetry = onRefresh,
+            hasMovies -> MovieGrid(movies, onMovieClick)
+            refreshState is LoadState.Loading -> CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            refreshState is LoadState.Error -> ErrorMessage(
+                message = refreshState.error.message.orEmpty(),
+                onRetry = movies::retry,
                 modifier = Modifier.align(Alignment.Center)
             )
-            uiState.isEmpty -> Text(
+            else -> Text(
                 text = stringResource(R.string.no_movies),
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.align(Alignment.Center)
@@ -97,14 +94,15 @@ fun MovieListScreen(
 }
 
 @Composable
-private fun MovieGrid(movies: List<Movie>, onMovieClick: (Movie) -> Unit) {
+private fun MovieGrid(movies: LazyPagingItems<Movie>, onMovieClick: (Movie) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(movies, key = { it.id }) { movie ->
+        items(count = movies.itemCount, key = movies.itemKey { it.id }) { index ->
+            val movie = movies[index] ?: return@items
             AsyncImage(
                 model = movie.posterUrl,
                 contentDescription = movie.title,
@@ -115,6 +113,13 @@ private fun MovieGrid(movies: List<Movie>, onMovieClick: (Movie) -> Unit) {
                     .sharedPoster(movie.id)
                     .clickable { onMovieClick(movie) }
             )
+        }
+        if (movies.loadState.append is LoadState.Loading) {
+            item(span = { GridItemSpan(maxLineSpan) }) {
+                Box(modifier = Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator()
+                }
+            }
         }
     }
 }

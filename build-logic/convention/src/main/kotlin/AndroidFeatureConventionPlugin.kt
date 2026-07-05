@@ -16,6 +16,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             add("implementation", libs.library("androidx-lifecycle-runtime-compose"))
             add("implementation", libs.library("androidx-lifecycle-viewmodel-compose"))
             add("implementation", libs.library("coil-compose"))
+
+            add("testImplementation", project(":core:testing"))
         }
     }
 }

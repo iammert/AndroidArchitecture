@@ -5,6 +5,10 @@ plugins {
 
 android {
     namespace = "iammert.com.androidarchitecture.core.data"
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -13,4 +17,9 @@ dependencies {
     implementation(projects.core.network)
     implementation(libs.kotlinx.coroutines.android)
     api(libs.androidx.paging.common)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.test.ext.junit)
 }

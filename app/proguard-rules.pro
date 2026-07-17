@@ -23,3 +23,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Hilt 2.60 references Error Prone annotations that are only needed at compile time.
+-dontwarn com.google.errorprone.annotations.**
